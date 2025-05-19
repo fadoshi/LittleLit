@@ -23,7 +23,6 @@ const bookSchema = new mongoose.Schema({
     ageGroup: {
       type: String,
       enum: ['3-5', '6-8', '9-12', 'Teen'],
-      required: true,
     },
     coverImage: {
       type: String, // URL to cover image

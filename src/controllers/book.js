@@ -1,5 +1,6 @@
 import Book from '../models/Book.js';
 import cloudinary from'../lib/cloudinary.js';
+import fs from 'fs/promises';
 
 //create new book post
 export const book = async (req, res) => {
@@ -19,8 +20,10 @@ export const book = async (req, res) => {
 
         //Uplode he image to clouninary
         const bookImage = await cloudinary.uploader.upload(req.file.path, {
-            folder: 'book_covers',
-          });
+          folder: 'book_covers',
+        });
+        // deletes the uploaded file from local disk
+        await fs.unlink(req.file.path); 
     
         // Create new book entry
         const newBook = new Book({

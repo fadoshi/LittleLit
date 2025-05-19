@@ -9,7 +9,8 @@ const port = process.env.PORT || 8800;
 const app = express();
 
 job.start();
-app.use(express.json()); //to parse Json data 
+app.use(express.json()); //to parse Json data
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 //Test Endpoint
