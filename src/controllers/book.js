@@ -105,10 +105,7 @@ export const deleteBook = async (req, res) => {
     
         if (!book) {
           return res.status(404).json({ message: 'Book not found' });
-        }
-        console.log("User ID from token:", userId);
-console.log("Book addedBy ID:", book.addedBy);
-    
+        }    
         // Optional: Only allow deletion by the user who added the book
         if (book.addedBy?.toString() !== userId?.toString()) {
           return res.status(403).json({ message: 'Unauthorized to delete this book' });
