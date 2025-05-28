@@ -106,6 +106,8 @@ export const deleteBook = async (req, res) => {
         if (!book) {
           return res.status(404).json({ message: 'Book not found' });
         }
+        console.log("User ID from token:", userId);
+console.log("Book addedBy ID:", book.addedBy);
     
         // Optional: Only allow deletion by the user who added the book
         if (book.addedBy?.toString() !== userId) {
@@ -113,7 +115,7 @@ export const deleteBook = async (req, res) => {
         }
 
         // Delete image from Cloudinary
-        if (book.coverImage && book.image.includes("cloudinary")) {
+        if (book.coverImage && book.coverImage.includes("cloudinary")) {
             try {
                 const publicId = book.coverImage.split("/").pop().split(".")[0];
                 await cloudinary.uploader.destroy(publicId);
