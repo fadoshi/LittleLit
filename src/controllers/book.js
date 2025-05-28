@@ -110,7 +110,7 @@ export const deleteBook = async (req, res) => {
 console.log("Book addedBy ID:", book.addedBy);
     
         // Optional: Only allow deletion by the user who added the book
-        if (book.addedBy?.toString() !== userId) {
+        if (book.addedBy?.toString() !== userId?.toString()) {
           return res.status(403).json({ message: 'Unauthorized to delete this book' });
         }
 
